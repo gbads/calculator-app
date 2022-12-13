@@ -1,16 +1,15 @@
-function Footer({author}) {
-    const year = new Date().getFullYear();
+const Footer = ({ author }) => {
+  const year = new Date().getFullYear();
 
-    return (
-      <footer>
-        <p>&copy; {author} {year}</p>
+  return (
+    <footer>
+      <p>&copy; {author} {year}</p>
+    </footer>
+  );
+}
 
-      </footer>
-    );
-  }
+Footer.defaultProps = {
+  author: null
+};
 
-  Footer.defaultProps = {
-    author: null
-    };
-  
-  export default Footer;
+export default Footer;
