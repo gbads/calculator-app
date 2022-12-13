@@ -7,9 +7,22 @@ const Main = () => {
   const [screen, setScreen] = useState("");
   const [btnCalc, setBtnCalc] = useState("");
 
-  const handleClick = (type, value) =>{
-console.log(type, value);
+  const handleClick = (type, value) => {
+    if(type === "number"){
+      setBtnCalc(`${btnCalc}${value}`);
+    } else if(type === "operator"){
+      setBtnCalc(`${btnCalc}${value}`);
+    } else if(type === "enter"){
+      setBtnCalc(`${btnCalc}${value}`);
+      // Eval to be replaced later
+      console.log(eval(btnCalc));
+      setBtnCalc("");
+      console.log(btnCalc);
+    }
+    
+
   };
+
 
   return (
     <main>
@@ -19,9 +32,9 @@ console.log(type, value);
 
       <section className="buttons">
         {calculatorButtons.map((item) => {
-          console.log(item);
           return (
             <Button
+              key={item.value}
               type={item.type}
               className={item.className}
               text={item.text}
