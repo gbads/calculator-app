@@ -8,21 +8,24 @@ const Main = () => {
   const [btnCalc, setBtnCalc] = useState("");
 
   const handleClick = (type, value) => {
-    if(type === "number"){
-      setBtnCalc(`${btnCalc}${value}`);
-    } else if(type === "operator"){
-      setBtnCalc(`${btnCalc}${value}`);
-    } else if(type === "enter"){
-      setBtnCalc(`${btnCalc}${value}`);
-      // Eval to be replaced later
-      console.log(eval(btnCalc));
-      setBtnCalc("");
-      console.log(btnCalc);
+    switch (type) {
+      case "number":
+        setBtnCalc(`${btnCalc}${value}`);
+        break;
+      case "operator":
+        setBtnCalc(`${btnCalc}${value}`);
+        break;
+      case "enter":
+        // Eval to be replaced later
+        console.log('btnCalc', btnCalc);
+        console.log('eval(btnCalc)', eval(btnCalc));
+        // Reset
+        setBtnCalc("");
+        break;
+      default:
+        console.log(type);
     }
-    
-
-  };
-
+  }
 
   return (
     <main>
