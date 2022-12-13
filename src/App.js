@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header title={calcApp.title} />
+      <Header title="Calculator App"/>
       <Main />
       <Footer author={calcApp.authors} />
     </div>
