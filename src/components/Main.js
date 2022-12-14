@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { calculatorButtons } from "../data/button-data";
 import Screen from "./Screen.js";
 import Button from "./Button.js";
@@ -6,6 +6,7 @@ import Button from "./Button.js";
 const Main = () => {
   const [screen, setScreen] = useState("");
   const [btnCalc, setBtnCalc] = useState("");
+  const [memory, setMemory] = useState("");
 
   const handleClick = (type, value) => {
     if(type === "number"){
@@ -18,11 +19,31 @@ const Main = () => {
       console.log(eval(btnCalc));
       setBtnCalc("");
       console.log(btnCalc);
-    }
+
+      // To be separated when we migrate to switch case statement
+    } else if (value === 'Memory Save') {
+      console.log(typeof(btnCalc));
+      console.log(btnCalc);
     
-
+      if (Number.isNaN(btnCalc) || btnCalc === null) {
+        console.log('a');
+        setScreen('Error');
+        setBtnCalc('');
+        setMemory('');
+      } else {
+        console.log('b');
+        setMemory(btnCalc);
+      }
+    } else if (value === 'Memory Clear') {
+        setMemory('');
+    } else if (value === 'Memory Recall') {
+      setScreen(memory);
+    } else if (value === 'Memory Addition') {
+      setBtnCalc(btnCalc + memory);
+    } else if (value === 'Memory Subtract') {
+      setBtnCalc(btnCalc - memory);
+    }
   };
-
 
   return (
     <main>
