@@ -14,6 +14,18 @@ const Main = () => {
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "operator":
+        switch (value) {
+          case "Square Root":
+            setBtnCalc(Math.sqrt(btnCalc));
+            break;
+          case "Percent":
+            setBtnCalc(btnCalc * 0.01);
+            break;
+          default:
+            setBtnCalc(`${btnCalc}${value}`);
+        }
+        break;
+      case "decimal":
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "enter":
