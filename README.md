@@ -5,8 +5,8 @@
 1. clear, all clear - Brandon - clear
 1. decimal - Mirim - math
 1. change sign - Rafael - math
-1. update eval - Rafael - math
 1. square, percentage - Mirim - math
+1. ~update eval - Mirim - math~
 1. memory - Gabbie - memory
 
 # Rules

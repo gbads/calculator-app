@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { calculatorButtons } from "../data/button-data";
-import Screen from "./Screen.js";
-import Button from "./Button.js";
+import safeEval from "../utils/safeEval";
+import Screen from "./Screen";
+import Button from "./Button";
 
 const Main = () => {
   const [screen, setScreen] = useState("");
@@ -16,11 +17,9 @@ const Main = () => {
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "enter":
-        // Eval to be replaced later
-        console.log('btnCalc', btnCalc);
-        console.log('eval(btnCalc)', eval(btnCalc));
-        // Reset
-        setBtnCalc("");
+        const newStr = safeEval(btnCalc);
+        setBtnCalc(newStr);
+        console.log("Result: ", newStr);
         break;
       default:
         console.log(type);
