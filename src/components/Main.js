@@ -10,9 +10,11 @@ const Main = () => {
   const handleClick = (type, value) => {
     switch (type) {
       case "number":
+        setScreen(`${btnCalc} ${type}`);
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "operator":
+        setScreen(`${btnCalc} ${type}`);
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "enter":
@@ -30,7 +32,7 @@ const Main = () => {
   return (
     <main>
       <section className="screen">
-        <Screen />
+        <Screen textToDisplay={screen}/>
       </section>
 
       <section className="buttons">
