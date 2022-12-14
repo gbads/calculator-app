@@ -22,10 +22,13 @@ const Main = () => {
 
       // To be separated when we migrate to switch case statement
     } else if (value === 'Memory Save') {
-      console.log(typeof(btnCalc));
-      console.log(btnCalc);
-    
-      if (Number.isNaN(btnCalc) || btnCalc === null) {
+      
+      // Creates a copy of btnCalc and validates it if it's a number. 
+      const btnCalcCopy = btnCalc;
+      const plainCalc = (btnCalcCopy*1);
+      
+      // Secondary validation
+      if (Number.isNaN(plainCalc) || plainCalc === null) {
         console.log('a');
         setScreen('Error');
         setBtnCalc('');
@@ -39,9 +42,11 @@ const Main = () => {
     } else if (value === 'Memory Recall') {
       setScreen(memory);
     } else if (value === 'Memory Addition') {
-      setBtnCalc(btnCalc + memory);
+      setBtnCalc(`${btnCalc}+${memory}`);
+      setScreen(`${btnCalc} + ${memory}`);
     } else if (value === 'Memory Subtract') {
-      setBtnCalc(btnCalc - memory);
+      setBtnCalc(`${btnCalc}-${memory}`);
+      setScreen(`${btnCalc} - ${memory}`);
     }
   };
 
