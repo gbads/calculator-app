@@ -25,7 +25,7 @@ const Main = () => {
       
       // Creates a copy of btnCalc and validates it if it's a number. 
       const btnCalcCopy = btnCalc;
-      const plainCalc = (btnCalcCopy*1);
+      const plainCalc = Number(btnCalc);
       
       // Secondary validation
       if (Number.isNaN(plainCalc) || plainCalc === null) {
