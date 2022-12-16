@@ -9,46 +9,58 @@ const Main = () => {
   const [memory, setMemory] = useState("");
 
   const handleClick = (type, value) => {
-    if(type === "number"){
-      setBtnCalc(`${btnCalc}${value}`);
-    } else if(type === "operator"){
-      setBtnCalc(`${btnCalc}${value}`);
-    } else if(type === "enter"){
-      setBtnCalc(`${btnCalc}${value}`);
-      // Eval to be replaced later
-      console.log(eval(btnCalc));
-      setBtnCalc("");
-      console.log(btnCalc);
-
-      // To be separated when we migrate to switch case statement
-    } else if (value === 'Memory Save') {
-      
-      // Creates a copy of btnCalc and validates it if it's a number. 
-      const btnCalcCopy = btnCalc;
-      const plainCalc = Number(btnCalc);
-      
-      // Secondary validation
-      if (Number.isNaN(plainCalc) || plainCalc === null) {
-        console.log('a');
-        setScreen('Error');
-        setBtnCalc('');
-        setMemory('');
-      } else {
-        console.log('b');
-        setMemory(btnCalc);
-      }
-    } else if (value === 'Memory Clear') {
-        setMemory('');
-    } else if (value === 'Memory Recall') {
-      setScreen(memory);
-    } else if (value === 'Memory Addition') {
-      setBtnCalc(`${btnCalc}+${memory}`);
-      setScreen(`${btnCalc} + ${memory}`);
-    } else if (value === 'Memory Subtract') {
-      setBtnCalc(`${btnCalc}-${memory}`);
-      setScreen(`${btnCalc} - ${memory}`);
+    switch (type) {
+      case "number":
+        setBtnCalc(`${btnCalc}${value}`);
+        break;
+      case "operator":
+        setBtnCalc(`${btnCalc}${value}`);
+        break;
+      case "memory":
+        memFunc(value);
+        break;
+      case "enter":
+        // Eval to be replaced later
+        console.log("btnCalc", btnCalc);
+        console.log("eval(btnCalc)", eval(btnCalc));
+        // Reset
+        setBtnCalc("");
+        break;
+      default:
+        console.log(type);
     }
-  };
+  }
+
+    // To be separated when we migrate to switch case statement
+
+    const memFunc = (value) => {
+      if (value === "Memory Save") {
+      
+        const plainCalc = Number(btnCalc);
+
+        // Number Validation
+        if (Number.isNaN(plainCalc) || plainCalc === null) {
+          console.log("a");
+          setScreen("Error");
+          setBtnCalc("");
+          setMemory("");
+        } else {
+          console.log("b");
+          setMemory(btnCalc);
+        }
+
+      } else if (value === "Memory Clear") {
+        setMemory("");
+      } else if (value === "Memory Recall") {
+        setScreen(memory);
+      } else if (value === "Memory Addition") {
+        setBtnCalc(`${btnCalc}+${memory}`);
+        setScreen(`${btnCalc} + ${memory}`);
+      } else if (value === "Memory Subtract") {
+        setBtnCalc(`${btnCalc}-${memory}`);
+        setScreen(`${btnCalc} - ${memory}`);
+      }
+    };
 
   return (
     <main>
