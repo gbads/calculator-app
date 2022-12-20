@@ -27,13 +27,21 @@ const Main = () => {
         break;    
       case "enter":
         // Eval to be replaced later
+        eval(btnCalc);
         console.log('btnCalc', btnCalc);
         console.log('eval(btnCalc)', eval(btnCalc));
-        // Reset
-        setBtnCalc("");
         break;
       default:
         console.log(type);
+    }
+
+    switch (value) {
+      case "All Clear":
+        setScreen("");
+        setBtnCalc("");
+        break;
+      default:
+        console.log(value);
     }
   }
 
