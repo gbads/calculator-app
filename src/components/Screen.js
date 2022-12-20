@@ -3,7 +3,7 @@ import React from 'react';
 
 const Screen = (display) => {
   return (
-    <div style={{ minHeight:'40px', border:'2px solid black'}}>{display.textToDisplay}</div>
+    <div style={{ minHeight:'40px', border:'1px solid black', marginBottom:'13px'}}>{display.textToDisplay}</div>
   )
 }
 

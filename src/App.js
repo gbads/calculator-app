@@ -12,9 +12,10 @@ function App() {
   return (
     <div className="App">
       <Header title="Calculator App"/>
+      {/* Add <Screen /> here if needed, was duplicating bounding box */}
       <Main />
       <Footer author={calcApp.authors} />
-      <Screen />
+    
     </div>
   );
 }

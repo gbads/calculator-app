@@ -17,6 +17,14 @@ const Main = () => {
         setScreen(`${btnCalc} ${type}`);
         setBtnCalc(`${btnCalc}${value}`);
         break;
+      case "decimal":
+        setScreen(`${btnCalc} ${type}`);
+        setBtnCalc(`${btnCalc}${value}`);
+        break;
+      case "sign":
+        setScreen(`${btnCalc} ${type}`);
+        setBtnCalc(`${btnCalc}${value}`);
+        break;    
       case "enter":
         // Eval to be replaced later
         console.log('btnCalc', btnCalc);
