@@ -18,18 +18,21 @@ const Main = () => {
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "operator":
-        setScreen(`${btnCalc} ${value}`);
+        let result = `${btnCalc} ${value}`;
 
         switch (value) {
           case "Square Root":
-            setBtnCalc(Math.sqrt(btnCalc));
+            result = Math.sqrt(btnCalc);
             break;
           case "Percent":
-            setBtnCalc(btnCalc * 0.01);
+            result = btnCalc * 0.01;
             break;
           default:
-            setBtnCalc(`${btnCalc}${value}`);
+            console.log('switch-operator: ', value);
         }
+
+        setBtnCalc(result);
+        setScreen(result);
         break;
       case "memory":
         memFunc(value);
@@ -39,7 +42,7 @@ const Main = () => {
         setBtnCalc(newStr);
         setScreen(newStr);
         break;
-      case "Clear":
+      case "clear":
         if (value === "All Clear") {
           setScreen("");
           setBtnCalc("");
@@ -52,7 +55,7 @@ const Main = () => {
         }
         break;
       default:
-        console.log(value);
+        console.log('switch-default: ', type);
     }
 
   }
