@@ -1,4 +1,42 @@
 .btn {
-  padding: 24px;
-  margin: 13px;
+  padding: 6px;
+  margin: 6px;
+  border: none;
+  border-radius: 8px;
+  width: 60px;
+  height: 40px;
+  background-color: #eae3dbff;
+  color: #252c46ff;
+  box-shadow: 1px 3px #d6d6d6;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
+ /* "AC & C"{
+  background: #d13f30;
+    color: white;
+    box-shadow: 1px 3px #822d2aff;
+}  css for AC & C button. */ 
+
+/* MS, MC, MR, M-, M+ {
+  background: #d1b330;
+  color:white;
+  box-shadow: 1px 3px #d1b330;
+ }     css for "MS, MC, MR, M-, M+ " buttons */
+
+ /* equal {
+  background: #d130cf
+  color: white;
+  box-shadow: 1px 3px #d130cf;
+  }    css for "equal" button */
+
+  /* Operators "+,-,/,x" {
+    background: #30d1bf;
+    color: white;
+    box-shadow: 1px 3px ##30d1bf;
+   } */
+
+  
