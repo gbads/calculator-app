@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 import { calculatorButtons } from "../data/button-data";
 import safeEval from "../utils/safeEval";
 import Screen from "./Screen";
@@ -12,9 +12,14 @@ const Main = () => {
   const handleClick = (type, value) => {
     switch (type) {
       case "number":
+      case "decimal":
+      case "sign":
+        setScreen(`${btnCalc} ${value}`);
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "operator":
+        setScreen(`${btnCalc} ${value}`);
+
         switch (value) {
           case "Square Root":
             setBtnCalc(Math.sqrt(btnCalc));
@@ -26,57 +31,65 @@ const Main = () => {
             setBtnCalc(`${btnCalc}${value}`);
         }
         break;
-      case "decimal":
-        setBtnCalc(`${btnCalc}${value}`);
-        break;
       case "memory":
         memFunc(value);
         break;
       case "enter":
         const newStr = safeEval(btnCalc);
         setBtnCalc(newStr);
-        console.log("Result: ", newStr);
+        setScreen(newStr);
+        break;
+      case "Clear":
+        if (value === "All Clear") {
+          setScreen("");
+          setBtnCalc("");
+        } else if (value === "Clear") {
+          const newScreen = screen.trim().slice(0, -1);
+          const newCalc = btnCalc.trim().slice(0, -1);
+
+          setScreen(newScreen);
+          setBtnCalc(newCalc);
+        }
         break;
       default:
-        console.log(type);
+        console.log(value);
     }
+
   }
 
-    // To be separated when we migrate to switch case statement
+  // To be separated when we migrate to switch case statement
 
-    const memFunc = (value) => {
-      if (value === "Memory Save") {
-      
-        const plainCalc = Number(btnCalc);
+  const memFunc = (value) => {
+    if (value === "Memory Save") {
+      const plainCalc = Number(btnCalc);
 
-        // Number Validation
-        if (Number.isNaN(plainCalc) || plainCalc === null) {
-          console.log("a");
-          setScreen("Error");
-          setBtnCalc("");
-          setMemory("");
-        } else {
-          console.log("b");
-          setMemory(btnCalc);
-        }
-
-      } else if (value === "Memory Clear") {
+      // Number Validation
+      if (Number.isNaN(plainCalc) || plainCalc === null) {
+        console.log("a");
+        setScreen("Error");
+        setBtnCalc("");
         setMemory("");
-      } else if (value === "Memory Recall") {
-        setScreen(memory);
-      } else if (value === "Memory Addition") {
-        setBtnCalc(`${btnCalc}+${memory}`);
-        setScreen(`${btnCalc} + ${memory}`);
-      } else if (value === "Memory Subtract") {
-        setBtnCalc(`${btnCalc}-${memory}`);
-        setScreen(`${btnCalc} - ${memory}`);
+      } else {
+        console.log("b");
+        setMemory(btnCalc);
       }
-    };
+    } else if (value === "Memory Clear") {
+      setMemory("");
+    } else if (value === "Memory Recall") {
+      setScreen(memory);
+    } else if (value === "Memory Addition") {
+      setBtnCalc(`${btnCalc}+${memory}`);
+      setScreen(`${btnCalc} + ${memory}`);
+    } else if (value === "Memory Subtract") {
+      setBtnCalc(`${btnCalc}-${memory}`);
+      setScreen(`${btnCalc} - ${memory}`);
+    }
+  };
 
   return (
     <main>
       <section className="screen">
-        <Screen />
+        <Screen textToDisplay={screen} />
       </section>
 
       <section className="buttons">
