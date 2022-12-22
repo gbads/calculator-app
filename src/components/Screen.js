@@ -1,9 +1,11 @@
 import React from 'react';
-
+import styles from './Screen.module.css';
 
 const Screen = (display) => {
   return (
-    <div style={{ minHeight:'40px', border:'1px solid black', marginBottom:'13px'}}>{display.textToDisplay}</div>
+    <div className={styles.wrapper}>
+      {display.textToDisplay}
+    </div>
   )
 }
 
