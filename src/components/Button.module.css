@@ -15,6 +15,10 @@
 }
 
 
+.btn:hover {
+  opacity: 50%;
+}
+
  /* "AC & C"{
   background: #d13f30;
     color: white;

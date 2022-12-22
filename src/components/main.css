@@ -1,0 +1,12 @@
+.main {
+background: #3b4664ff;
+/* justify-content: center;
+flex-direction: column;
+align-items: center; */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buttons {
+    background: #252c46ff;
+  
+  }

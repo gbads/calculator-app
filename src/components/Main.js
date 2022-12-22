@@ -3,6 +3,7 @@ import { calculatorButtons } from "../data/button-data";
 import safeEval from "../utils/safeEval";
 import Screen from "./Screen";
 import Button from "./Button";
+import styles from "./main.css"
 
 const Main = () => {
   const [screen, setScreen] = useState("");
@@ -90,7 +91,7 @@ const Main = () => {
   };
 
   return (
-    <main>
+    <main className="main">
       <section className="screen">
         <Screen textToDisplay={screen} />
       </section>
