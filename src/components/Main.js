@@ -10,29 +10,30 @@ const Main = () => {
   const handleClick = (type, value) => {
     switch (type) {
       case "number":
-        setScreen(`${btnCalc} ${type}`);
+        setScreen(`${btnCalc} ${value}`);
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "operator":
-        setScreen(`${btnCalc} ${type}`);
+        setScreen(`${btnCalc} ${value}`);
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "decimal":
-        setScreen(`${btnCalc} ${type}`);
+        setScreen(`${btnCalc} ${value}`);
         setBtnCalc(`${btnCalc}${value}`);
         break;
       case "sign":
-        setScreen(`${btnCalc} ${type}`);
+        setScreen(`${btnCalc} ${value}`);
         setBtnCalc(`${btnCalc}${value}`);
         break;    
       case "enter":
         // Eval to be replaced later
         eval(btnCalc);
+        setScreen(`${btnCalc} ${value}`);
         console.log('btnCalc', btnCalc);
         console.log('eval(btnCalc)', eval(btnCalc));
         break;
       default:
-        console.log(type);
+        console.log(value);
     }
 
     switch (value) {
@@ -40,10 +41,14 @@ const Main = () => {
         setScreen("");
         setBtnCalc("");
         break;
+      case "Clear":
+        break;
       default:
         console.log(value);
     }
+
   }
+
 
   return (
     <main>
