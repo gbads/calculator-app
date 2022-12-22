@@ -42,6 +42,10 @@ const Main = () => {
         setBtnCalc("");
         break;
       case "Clear":
+        const newScreen = screen.trim().slice(0, -1);
+        setScreen(newScreen);
+        const newCalc = btnCalc.trim().slice(0, -1);
+        setBtnCalc(newCalc);
         break;
       default:
         console.log(value);
