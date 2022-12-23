@@ -29,17 +29,14 @@ const Main = () => {
         setBtnCalc(result);
         break;
       case "operator":
-        let result = `${btnCalc} ${value}`;
-
-        switch (value) {
-          case "Square Root":
-            result = Math.sqrt(btnCalc);
-            break;
-          case "Percent":
-            result = btnCalc * 0.01;
-            break;
-          default:
-            console.log('switch-operator: ', value);
+        if (screen.charAt(screen.length - 1) === " ") {
+          result = screen.substring(0, screen.length - 2) + value + ' ';
+        } else if (value === "Square Root") {
+          result = Math.sqrt(btnCalc);
+        } else if (value === "Percent") {
+          result = btnCalc * 0.01;
+        } else {
+          result = `${btnCalc} ${value} `;
         }
 
         setBtnCalc(result);
