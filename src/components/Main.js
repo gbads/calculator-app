@@ -30,7 +30,7 @@ const Main = () => {
         setBtnCalc(result);
         break;
       case "operator":
-        if (screen.charAt(screen.length - 1) === " ") {
+        if (String(screen).charAt(screen.length - 1) === " ") {
           result = screen.substring(0, screen.length - 2) + value + ' ';
         } else if (value === "Square Root") {
           result = Math.sqrt(btnCalc);
