@@ -1,8 +1,57 @@
 button {
+  padding: 6px;
+  margin: 6px;
+  border: none;
+  border-radius: 8px;
+  width: 60px;
+  height: 40px;
+  background-color: #eae3dbff;
+  color: #252c46ff;
+  box-shadow: 1px 3px #d6d6d6;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+  opacity: 50%;
+}
+
+.ac, .c {
+  background: #d13f30;
+  color: white;
+  box-shadow: 1px 3px #822d2aff;
+}
+
+.ms, .mc, .ms, .mr, .m-minus, .m-plus {
+  background: #d1b330;
+  color:white;
+  box-shadow: 1px 3px #504a32
+}
+
+.equal {
+  background: #d130cf;
+  color: white;
+  box-shadow: 1px 3px #832e81;
+  width: 132px;
+  margin-left: 222px;
+}
+
+.add, .subtract, .divide, .multiply, .square-root, .percent {
+  background: #30d1bf;
+  color: white;
+  box-shadow: 1px 3px #42837b;
+}
+
+
+/* Commented out, this was the only CSS merged -GB
+
+button{
   padding: 24px;
   margin: 13px;
 }
 
 .ac {
   background-color: red;
-}
+}*/
