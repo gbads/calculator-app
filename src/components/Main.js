@@ -30,19 +30,22 @@ const Main = () => {
         setBtnCalc(result);
         break;
       case "operator":
-        if (screen.charAt(screen.length - 1) === " ") {
-          result = screen.substring(0, screen.length - 2) + value + ' ';
-        } else if (value === "Square Root") {
+        if (value === "Square Root") {
           result = Math.sqrt(btnCalc);
+          setIsResult(true);
         } else if (value === "Percent") {
           result = btnCalc * 0.01;
+          setIsResult(true);
+        } else if (String(screen).charAt(screen.length - 1) === " ") {
+          result = screen.substring(0, screen.length - 2) + value + ' ';
+          setIsResult(false);
         } else {
           result = `${btnCalc} ${value} `;
+          setIsResult(false);
         }
 
         setBtnCalc(result);
         setScreen(result);
-        setIsResult(false);
         break;
       case "memory":
         memFunc(value);
@@ -99,11 +102,11 @@ const Main = () => {
 
   return (
     <main className="main">
-      <section className="screen">
+      <section className="screen-wrapper">
         <Screen textToDisplay={screen} />
       </section>
 
-      <section className="buttons">
+      <section className="button-wrapper">
         {calculatorButtons.map((item) => {
           return (
             <Button

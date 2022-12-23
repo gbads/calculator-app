@@ -7,12 +7,6 @@
     width: 410px;
     }
     
-    .buttons {
-        background: #252c46ff;
-        height: 320px;
-      
-      }
-    
     #root {
       display: flex;
       flex-direction: column;
@@ -32,3 +26,12 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-weight: bold;
     }
+  
+.screen-wrapper {
+  padding: 10px;
+}
+
+.button-wrapper {
+  background: #252c46;
+  padding: 15px; 
+}
