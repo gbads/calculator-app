@@ -3,6 +3,7 @@ import { calculatorButtons } from "../data/button-data";
 import safeEval from "../utils/safeEval";
 import Screen from "./Screen";
 import Button from "./Button";
+import styles from "../styles/Main.css"
 
 const Main = () => {
   const [screen, setScreen] = useState("0");
