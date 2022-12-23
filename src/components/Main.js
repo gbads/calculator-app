@@ -30,12 +30,12 @@ const Main = () => {
         setBtnCalc(result);
         break;
       case "operator":
-        if (String(screen).charAt(screen.length - 1) === " ") {
-          result = screen.substring(0, screen.length - 2) + value + ' ';
-        } else if (value === "Square Root") {
+        if (value === "Square Root") {
           result = Math.sqrt(btnCalc);
         } else if (value === "Percent") {
           result = btnCalc * 0.01;
+        } else if (String(screen).charAt(screen.length - 1) === " ") {
+          result = screen.substring(0, screen.length - 2) + value + ' ';
         } else {
           result = `${btnCalc} ${value} `;
         }
