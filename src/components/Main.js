@@ -99,11 +99,11 @@ const Main = () => {
 
   return (
     <main className="main">
-      <section className="screen">
+      <section className="screen-wrapper">
         <Screen textToDisplay={screen} />
       </section>
 
-      <section className="buttons">
+      <section className="button-wrapper">
         {calculatorButtons.map((item) => {
           return (
             <Button
