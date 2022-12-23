@@ -98,7 +98,7 @@ const Main = () => {
   };
 
   return (
-    <main>
+    <main className="main">
       <section className="screen">
         <Screen textToDisplay={screen} />
       </section>
