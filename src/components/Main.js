@@ -5,17 +5,28 @@ import Screen from "./Screen";
 import Button from "./Button";
 
 const Main = () => {
-  const [screen, setScreen] = useState("");
-  const [btnCalc, setBtnCalc] = useState("");
+  const [screen, setScreen] = useState("0");
+  const [btnCalc, setBtnCalc] = useState("0");
+  const [isResult, setIsResult] = useState(false);
   const [memory, setMemory] = useState("");
 
   const handleClick = (type, value) => {
+    let result = `${btnCalc}${value}`;
+
     switch (type) {
       case "number":
       case "decimal":
+        if (isResult || screen === "0") {
+          result = `${value}`;
+          setIsResult(false);
+        }
+
+        setScreen(result);
+        setBtnCalc(result);
+        break;
       case "sign":
-        setScreen(`${btnCalc} ${value}`);
-        setBtnCalc(`${btnCalc}${value}`);
+        setScreen(result);
+        setBtnCalc(result);
         break;
       case "operator":
         let result = `${btnCalc} ${value}`;
@@ -33,19 +44,21 @@ const Main = () => {
 
         setBtnCalc(result);
         setScreen(result);
+        setIsResult(false);
         break;
       case "memory":
         memFunc(value);
         break;
       case "enter":
-        const newStr = safeEval(btnCalc);
-        setBtnCalc(newStr);
-        setScreen(newStr);
+        result = safeEval(btnCalc);
+        setBtnCalc(result);
+        setScreen(result);
+        setIsResult(true);
         break;
       case "clear":
         if (value === "All Clear") {
-          setScreen("");
-          setBtnCalc("");
+          setScreen("0");
+          setBtnCalc("0");
         } else if (value === "Clear") {
           const newScreen = screen.trim().slice(0, -1);
           const newCalc = btnCalc.trim().slice(0, -1);
@@ -57,10 +70,7 @@ const Main = () => {
       default:
         console.log('switch-default: ', type);
     }
-
   }
-
-  // To be separated when we migrate to switch case statement
 
   const memFunc = (value) => {
     if (value === "Memory Save") {
