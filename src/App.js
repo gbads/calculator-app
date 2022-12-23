@@ -1,7 +1,8 @@
 import Header from './components/Header';
 import Main from './components/Main';
-import Footer from './components/Footer'
-import Screen from './components/Screen'
+import Footer from './components/Footer';
+import Screen from './components/Screen';
+import styles from './styles/App.css';
 
 function App() {
   const calcApp = {

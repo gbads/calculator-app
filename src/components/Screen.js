@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Screen.module.css';
+import styles from '../styles/Screen.module.css';
 
 const Screen = (display) => {
   return (
