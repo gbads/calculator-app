@@ -1,16 +1,5 @@
 export const calculatorButtons = [
-  {
-    type: 'clear',
-    className: 'ac',
-    text: 'AC',
-    value: 'All Clear',
-  },
-  {
-    type: 'clear',
-    className: 'c',
-    text: 'C',
-    value: 'Clear',
-  },
+
   {
     type: 'memory',
     className: 'ms',
@@ -41,6 +30,7 @@ export const calculatorButtons = [
     text: 'M+',
     value: 'Memory Addition',
   },
+
   {
     type: 'number',
     className: 'seven',
@@ -58,6 +48,18 @@ export const calculatorButtons = [
     className: 'nine',
     text: 9,
     value: 9,
+  },
+  {
+    type: 'clear',
+    className: 'ac',
+    text: 'AC',
+    value: 'All Clear',
+  },
+  {
+    type: 'clear',
+    className: 'c',
+    text: 'C',
+    value: 'Clear',
   },
   {
     type: 'number',
@@ -78,6 +80,18 @@ export const calculatorButtons = [
     value: 6,
   },
   {
+    type: 'operator',
+    className: 'percent',
+    text: '%',
+    value: 'Percent',
+  },
+  {
+    type: 'operator',
+    className: 'square-root',
+    text: '\u221a',
+    value: 'Square Root',
+  },
+  {
     type: 'number',
     className: 'one',
     text: 1,
@@ -96,11 +110,24 @@ export const calculatorButtons = [
     value: 3,
   },
   {
+    type: 'operator',
+    className: 'add',
+    text: '+',
+    value: '+',
+  },
+  {
+    type: 'operator',
+    className: 'subtract',
+    text: '-',
+    value: '-',
+  },
+  {
     type: 'number',
     className: 'zero',
     text: 0,
     value: 0,
   },
+  
   {
     type: 'decimal',
     className: 'decimal',
@@ -113,18 +140,7 @@ export const calculatorButtons = [
     text: '+/-',
     value: '+/-',
   },
-  {
-    type: 'operator',
-    className: 'percent',
-    text: '%',
-    value: 'Percent',
-  },
-  {
-    type: 'operator',
-    className: 'square-root',
-    text: '\u221a',
-    value: 'Square Root',
-  },
+  
   {
     type: 'operator',
     className: 'multiply',
@@ -137,18 +153,7 @@ export const calculatorButtons = [
     text: '\u00f7',
     value: '/',
   },
-  {
-    type: 'operator',
-    className: 'add',
-    text: '+',
-    value: '+',
-  },
-  {
-    type: 'operator',
-    className: 'subtract',
-    text: '-',
-    value: '-',
-  },
+  
   {
     type: 'enter',
     className: 'equal',
