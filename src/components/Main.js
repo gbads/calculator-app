@@ -32,17 +32,20 @@ const Main = () => {
       case "operator":
         if (value === "Square Root") {
           result = Math.sqrt(btnCalc);
+          setIsResult(true);
         } else if (value === "Percent") {
           result = btnCalc * 0.01;
+          setIsResult(true);
         } else if (String(screen).charAt(screen.length - 1) === " ") {
           result = screen.substring(0, screen.length - 2) + value + ' ';
+          setIsResult(false);
         } else {
           result = `${btnCalc} ${value} `;
+          setIsResult(false);
         }
 
         setBtnCalc(result);
         setScreen(result);
-        setIsResult(false);
         break;
       case "memory":
         memFunc(value);
