@@ -1,3 +1,6 @@
+import React from 'react';
+import '../styles/Button.css';
+
 const Button = ({ type, className, text, value, onClick }) => {
   const handleClick = () => {
     onClick(type, value);

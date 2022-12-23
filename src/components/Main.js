@@ -1,36 +1,105 @@
 import { useState } from "react";
 import { calculatorButtons } from "../data/button-data";
-import Screen from "./Screen.js";
-import Button from "./Button.js";
+import safeEval from "../utils/safeEval";
+import Screen from "./Screen";
+import Button from "./Button";
 
 const Main = () => {
-  const [screen, setScreen] = useState("");
-  const [btnCalc, setBtnCalc] = useState("");
+  const [screen, setScreen] = useState("0");
+  const [btnCalc, setBtnCalc] = useState("0");
+  const [isResult, setIsResult] = useState(false);
+  const [memory, setMemory] = useState("");
 
   const handleClick = (type, value) => {
+    let result = `${btnCalc}${value}`;
+
     switch (type) {
       case "number":
-        setBtnCalc(`${btnCalc}${value}`);
+      case "decimal":
+        if (isResult || screen === "0") {
+          result = `${value}`;
+          setIsResult(false);
+        }
+
+        setScreen(result);
+        setBtnCalc(result);
+        break;
+      case "sign":
+        setScreen(result);
+        setBtnCalc(result);
         break;
       case "operator":
-        setBtnCalc(`${btnCalc}${value}`);
+        if (screen.charAt(screen.length - 1) === " ") {
+          result = screen.substring(0, screen.length - 2) + value + ' ';
+        } else if (value === "Square Root") {
+          result = Math.sqrt(btnCalc);
+        } else if (value === "Percent") {
+          result = btnCalc * 0.01;
+        } else {
+          result = `${btnCalc} ${value} `;
+        }
+
+        setBtnCalc(result);
+        setScreen(result);
+        setIsResult(false);
+        break;
+      case "memory":
+        memFunc(value);
         break;
       case "enter":
-        // Eval to be replaced later
-        console.log('btnCalc', btnCalc);
-        console.log('eval(btnCalc)', eval(btnCalc));
-        // Reset
-        setBtnCalc("");
+        result = safeEval(btnCalc);
+        setBtnCalc(result);
+        setScreen(result);
+        setIsResult(true);
+        break;
+      case "clear":
+        if (value === "All Clear") {
+          setScreen("0");
+          setBtnCalc("0");
+        } else if (value === "Clear") {
+          const newScreen = screen.trim().slice(0, -1);
+          const newCalc = btnCalc.trim().slice(0, -1);
+
+          setScreen(newScreen);
+          setBtnCalc(newCalc);
+        }
         break;
       default:
-        console.log(type);
+        console.log('switch-default: ', type);
     }
   }
+
+  const memFunc = (value) => {
+    if (value === "Memory Save") {
+      const plainCalc = Number(btnCalc);
+
+      // Number Validation
+      if (Number.isNaN(plainCalc) || plainCalc === null) {
+        console.log("a");
+        setScreen("Error");
+        setBtnCalc("");
+        setMemory("");
+      } else {
+        console.log("b");
+        setMemory(btnCalc);
+      }
+    } else if (value === "Memory Clear") {
+      setMemory("");
+    } else if (value === "Memory Recall") {
+      setScreen(memory);
+    } else if (value === "Memory Addition") {
+      setBtnCalc(`${btnCalc}+${memory}`);
+      setScreen(`${btnCalc} + ${memory}`);
+    } else if (value === "Memory Subtract") {
+      setBtnCalc(`${btnCalc}-${memory}`);
+      setScreen(`${btnCalc} - ${memory}`);
+    }
+  };
 
   return (
     <main>
       <section className="screen">
-        <Screen />
+        <Screen textToDisplay={screen} />
       </section>
 
       <section className="buttons">
