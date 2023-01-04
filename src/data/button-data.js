@@ -1,17 +1,5 @@
 export const calculatorButtons = [
   {
-    type: 'clear',
-    className: 'ac',
-    text: 'AC',
-    value: 'All Clear',
-  },
-  {
-    type: 'clear',
-    className: 'c',
-    text: 'C',
-    value: 'Clear',
-  },
-  {
     type: 'memory',
     className: 'ms',
     text: 'MS',
@@ -60,6 +48,18 @@ export const calculatorButtons = [
     value: 9,
   },
   {
+    type: 'clear',
+    className: 'ac',
+    text: 'AC',
+    value: 'All Clear',
+  },
+  {
+    type: 'clear',
+    className: 'c',
+    text: 'C',
+    value: 'Clear',
+  },
+  {
     type: 'number',
     className: 'four',
     text: 4,
@@ -78,6 +78,18 @@ export const calculatorButtons = [
     value: 6,
   },
   {
+    type: 'operator',
+    className: 'add',
+    text: '+',
+    value: '+',
+  },
+  {
+    type: 'operator',
+    className: 'subtract',
+    text: '-',
+    value: '-',
+  },
+  {
     type: 'number',
     className: 'one',
     text: 1,
@@ -94,6 +106,18 @@ export const calculatorButtons = [
     className: 'three',
     text: 3,
     value: 3,
+  },
+  {
+    type: 'operator',
+    className: 'multiply',
+    text: '\u00d7',
+    value: '*',
+  },
+  {
+    type: 'operator',
+    className: 'divide',
+    text: '\u00f7',
+    value: '/',
   },
   {
     type: 'number',
@@ -124,31 +148,7 @@ export const calculatorButtons = [
     className: 'square-root',
     text: '\u221a',
     value: 'Square Root',
-  },
-  {
-    type: 'operator',
-    className: 'multiply',
-    text: '\u00d7',
-    value: '*',
-  },
-  {
-    type: 'operator',
-    className: 'divide',
-    text: '\u00f7',
-    value: '/',
-  },
-  {
-    type: 'operator',
-    className: 'add',
-    text: '+',
-    value: '+',
-  },
-  {
-    type: 'operator',
-    className: 'subtract',
-    text: '-',
-    value: '-',
-  },
+  },  
   {
     type: 'enter',
     className: 'equal',
