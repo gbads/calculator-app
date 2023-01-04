@@ -3,7 +3,7 @@ import { calculatorButtons } from "../data/button-data";
 import safeEval from "../utils/safeEval";
 import Screen from "./Screen";
 import Button from "./Button";
-import styles from "../styles/Main.css"
+import "../styles/Main.css";
 
 const Main = () => {
   const [screen, setScreen] = useState("0");
@@ -39,6 +39,23 @@ const Main = () => {
         setBtnCalc(result);
         break;
       case "sign":
+        let numbers = btnCalc.split(" ");
+        let lastNumber = numbers[numbers.length - 1];
+        if(Number.isNaN(lastNumber) || lastNumber === "") {
+          
+          result = btnCalc;
+
+        } else {
+          if(lastNumber.charAt(0) ==="-") {
+            lastNumber =  lastNumber.substring(1);
+          } else {
+            lastNumber = `-${lastNumber}`;
+          }
+
+          numbers[numbers.length - 1] = lastNumber;
+          result = numbers.join(" ");
+        }
+
         setScreen(result);
         setBtnCalc(result);
         break;
