@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { calculatorButtons } from "../data/button-data";
+import { getLastChar } from '../utils/lib';
 import safeEval from "../utils/safeEval";
 import Screen from "./Screen";
 import Button from "./Button";
@@ -27,9 +28,9 @@ const Main = () => {
 
     if (String(screen) === "0") {
       result = `0${value}`;
-    } else if (String(screen).slice(-1) === " ") {
+    } else if (getLastChar(screen) === " ") {
       result = screen + `0${value}`;
-    } else if (String(screen).slice(-1) === ".") {
+    } else if (getLastChar(screen) === ".") {
       result = screen;
     }
 
@@ -119,7 +120,7 @@ const Main = () => {
         memFunc(value);
         break;
       case "enter":
-        if ((String(screen).slice(-1) === " ") || Number.isNaN(String(screen).slice(-1))) {
+        if ((getLastChar(screen) === " ") || Number.isNaN(getLastChar(screen))) {
           result = String(screen).substring(0, screen.length - 2);
         } else {
           result = safeEval(btnCalc);

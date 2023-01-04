@@ -1,0 +1,1 @@
+export const getLastChar = (val) => String(val).slice(-1);
