@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { calculatorButtons } from "../data/button-data";
+import { getLastChar, isNotNum } from '../utils/lib';
 import safeEval from "../utils/safeEval";
 import Screen from "./Screen";
 import Button from "./Button";
@@ -11,76 +12,106 @@ const Main = () => {
   const [isResult, setIsResult] = useState(false);
   const [memory, setMemory] = useState("");
 
+  const handleNumber = (equation, value) => {
+    let result = equation;
+
+    if (isResult || screen === "0") {
+      result = `${value}`;
+      setIsResult(false);
+    }
+
+    return result;
+  }
+
+  const handleDecimal = (equation, value) => {
+    let result = equation;
+
+    if (String(screen) === "0") {
+      result = `0${value}`;
+    } else if (getLastChar(screen) === " ") {
+      result = screen + `0${value}`;
+    } else if (getLastChar(screen) === ".") {
+      result = screen;
+    }
+
+
+    return result;
+  }
+
+  const handleSign = (equation) => {
+    let result = equation;
+
+    let numbers = String(btnCalc).split(" ");
+    let lastNumber = numbers[numbers.length - 1];
+    if (isNotNum(lastNumber) || lastNumber === "" || lastNumber === "0") {
+      result = btnCalc;
+    } else {
+      if (lastNumber.charAt(0) === "-") {
+        lastNumber = lastNumber.substring(1);
+      } else {
+        lastNumber = `-${lastNumber}`;
+      }
+
+      numbers[numbers.length - 1] = lastNumber;
+      result = numbers.join(" ");
+    }
+
+    return result;
+  }
+
+  const handleOperator = (equation, value) => {
+    let result = equation;
+
+    if (value === "Square Root") {
+      result = Math.sqrt(btnCalc);
+      setIsResult(true);
+    } else if (value === "Percent") {
+      result = btnCalc * 0.01;
+      setIsResult(true);
+    } else if (String(screen).charAt(screen.length - 1) === " ") {
+      result = screen.substring(0, screen.length - 2) + value + ' ';
+      setIsResult(false);
+    } else {
+      result = `${btnCalc} ${value} `;
+      setIsResult(false);
+    }
+
+    if (String(result).includes(". ")) {
+      result = String(result).replace(". ", " ");
+    }
+
+    if (isNotNum(result)) {
+      result = "Error";
+    }
+
+    return result;
+  }
+
   const handleClick = (type, value) => {
     let result = `${btnCalc}${value}`;
 
     switch (type) {
       case "number":
-        if (isResult || screen === "0") {
-          result = `${value}`;
-          setIsResult(false);
-        }
+        result = handleNumber(result, value);
 
         setScreen(result);
         setBtnCalc(result);
         break;
       case "decimal":
-        if (isResult || screen === "0") {
-          result = `0${value}`;
-          setIsResult(false);
-        } else if (screen.slice(-1) === " ") {
-          result = screen + `0${value}`;
-          setIsResult(false);
-        } else if (screen.slice(-1) === ".") {
-          result = screen;
-        }
+        result = handleDecimal(result, value);
 
+        setIsResult(false);
         setScreen(result);
         setBtnCalc(result);
         break;
       case "sign":
-        let numbers = String(btnCalc).split(" ");
-        let lastNumber = numbers[numbers.length - 1];
-        if(Number.isNaN(lastNumber) || lastNumber === "" || lastNumber === "0") {
-          
-          result = btnCalc;
-
-        } else {
-          if(lastNumber.charAt(0) ==="-") {
-            lastNumber =  lastNumber.substring(1);
-          } else {
-            lastNumber = `-${lastNumber}`;
-          }
-
-          numbers[numbers.length - 1] = lastNumber;
-          result = numbers.join(" ");
-        }
+        result = handleSign(result);
 
         setScreen(result);
         setBtnCalc(result);
         break;
       case "operator":
-        if (value === "Square Root") {
-          result = Math.sqrt(btnCalc);
-          setIsResult(true);
-        } else if (value === "Percent") {
-          result = btnCalc * 0.01;
-          setIsResult(true);
-        } else if (String(screen).charAt(screen.length - 1) === " ") {
-          result = screen.substring(0, screen.length - 2) + value + ' ';
-          setIsResult(false);
-        } else{
-          result = `${btnCalc} ${value} `;
-          setIsResult(false);
-        }
-
-        if (String(result).includes(". ")) {
-          result = String(result).replace(". ", " ");
-        }
-
-        if(Number.isNaN(result)) {
-          result = "Error";
-        }
+        result = handleOperator(result, value);
 
         setBtnCalc(result);
         setScreen(result);
@@ -89,14 +120,14 @@ const Main = () => {
         memFunc(value);
         break;
       case "enter":
-
-        if((String(screen).slice(-1) === " ") || Number.isNaN(String(screen).slice(-1))) {
-          result =  String(screen).substring(0, screen.length - 2);
+        console.log(getLastChar(screen));
+        if (getLastChar(screen) === " " || isNotNum(getLastChar(screen))) {
+          result = String(screen).substring(0, screen.length - 3);
         } else {
           result = safeEval(btnCalc);
         }
 
-        if(Number.isNaN(result)) {
+        if (isNotNum(result)) {
           result = "Error";
         }
 
@@ -109,7 +140,7 @@ const Main = () => {
           setScreen("0");
           setBtnCalc("0");
         } else if (value === "Clear") {
-          if ((btnCalc === "0" && screen === "0") || String(screen).length === 1 ) {
+          if ((btnCalc === "0" && screen === "0") || String(screen).length === 1) {
             console.log(screen.length);
             setScreen("0");
             setBtnCalc("0");
@@ -131,39 +162,33 @@ const Main = () => {
       const plainCalc = Number(btnCalc);
 
       // Number Validation
-      if (Number.isNaN(plainCalc) || plainCalc === null) {
-        console.log("a");
+      if (isNotNum(plainCalc) || plainCalc === null) {
         setScreen("Error");
         setBtnCalc("");
         setMemory("");
       } else {
-        console.log("b");
         setMemory(btnCalc);
       }
     } else if (value === "Memory Clear") {
       setMemory("");
-      
-    } else if(memory === "" || memory === null || Number.isNaN(memory)) {
+    } else if (memory === "" || memory === null || isNotNum(memory)) {
       if (value === "Memory Recall" || value === "Memory Addition" || value === "Memory Subtract") {
         setScreen("Error");
         setBtnCalc("");
         setMemory("");
       }
-    } else if (!Number.isNaN(memory)) {
+    } else if (!isNotNum(memory)) {
       if (value === "Memory Addition") {
-        setBtnCalc(`${btnCalc}+${memory}`);
+        setBtnCalc(`${btnCalc} + ${memory}`);
         setScreen(`${btnCalc} + ${memory}`);
       } else if (value === "Memory Subtract") {
-        setBtnCalc(`${btnCalc}-${memory}`);
+        setBtnCalc(`${btnCalc} - ${memory}`);
         setScreen(`${btnCalc} - ${memory}`);
       } else if (value === "Memory Recall") {
         setBtnCalc(`${memory}`);
         setScreen(`${memory}`);
       }
-      
-    } 
-        
-      
+    }
   };
 
   return (
