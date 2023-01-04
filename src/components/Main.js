@@ -120,14 +120,13 @@ const Main = () => {
         memFunc(value);
         break;
       case "enter":
-        console.log(getLastChar(screen));
         if (getLastChar(screen) === " " || isNotNum(getLastChar(screen))) {
           result = String(screen).substring(0, screen.length - 3);
         } else {
           result = safeEval(btnCalc);
         }
 
-        if (isNotNum(result)) {
+        if (isNotNum(result) || result === Infinity) {
           result = "Error";
         }
 
@@ -140,8 +139,7 @@ const Main = () => {
           setScreen("0");
           setBtnCalc("0");
         } else if (value === "Clear") {
-          if ((btnCalc === "0" && screen === "0") || String(screen).length === 1) {
-            console.log(screen.length);
+          if ((btnCalc === "0" && screen === "0") || String(screen).length === 1 || String(screen) === "Error") {
             setScreen("0");
             setBtnCalc("0");
           } else {
