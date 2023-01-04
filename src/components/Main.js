@@ -41,7 +41,7 @@ const Main = () => {
       case "sign":
         let numbers = String(btnCalc).split(" ");
         let lastNumber = numbers[numbers.length - 1];
-        if(Number.isNaN(lastNumber) || lastNumber === "") {
+        if(Number.isNaN(lastNumber) || lastNumber === "" || lastNumber === "0") {
           
           result = btnCalc;
 
