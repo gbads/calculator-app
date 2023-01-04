@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { calculatorButtons } from "../data/button-data";
-import { getLastChar } from '../utils/lib';
+import { getLastChar, isNotNum } from '../utils/lib';
 import safeEval from "../utils/safeEval";
 import Screen from "./Screen";
 import Button from "./Button";
@@ -43,7 +43,7 @@ const Main = () => {
 
     let numbers = String(btnCalc).split(" ");
     let lastNumber = numbers[numbers.length - 1];
-    if (Number.isNaN(lastNumber) || lastNumber === "" || lastNumber === "0") {
+    if (isNotNum(lastNumber) || lastNumber === "" || lastNumber === "0") {
       result = btnCalc;
     } else {
       if (lastNumber.charAt(0) === "-") {
@@ -80,7 +80,7 @@ const Main = () => {
       result = String(result).replace(". ", " ");
     }
 
-    if (Number.isNaN(result)) {
+    if (isNotNum(result)) {
       result = "Error";
     }
 
@@ -120,13 +120,14 @@ const Main = () => {
         memFunc(value);
         break;
       case "enter":
-        if ((getLastChar(screen) === " ") || Number.isNaN(getLastChar(screen))) {
-          result = String(screen).substring(0, screen.length - 2);
+        console.log(getLastChar(screen));
+        if (getLastChar(screen) === " " || isNotNum(getLastChar(screen))) {
+          result = String(screen).substring(0, screen.length - 3);
         } else {
           result = safeEval(btnCalc);
         }
 
-        if (Number.isNaN(result)) {
+        if (isNotNum(result)) {
           result = "Error";
         }
 
@@ -161,29 +162,27 @@ const Main = () => {
       const plainCalc = Number(btnCalc);
 
       // Number Validation
-      if (Number.isNaN(plainCalc) || plainCalc === null) {
-        console.log("a");
+      if (isNotNum(plainCalc) || plainCalc === null) {
         setScreen("Error");
         setBtnCalc("");
         setMemory("");
       } else {
-        console.log("b");
         setMemory(btnCalc);
       }
     } else if (value === "Memory Clear") {
       setMemory("");
-    } else if (memory === "" || memory === null || Number.isNaN(memory)) {
+    } else if (memory === "" || memory === null || isNotNum(memory)) {
       if (value === "Memory Recall" || value === "Memory Addition" || value === "Memory Subtract") {
         setScreen("Error");
         setBtnCalc("");
         setMemory("");
       }
-    } else if (!Number.isNaN(memory)) {
+    } else if (!isNotNum(memory)) {
       if (value === "Memory Addition") {
-        setBtnCalc(`${btnCalc}+${memory}`);
+        setBtnCalc(`${btnCalc} + ${memory}`);
         setScreen(`${btnCalc} + ${memory}`);
       } else if (value === "Memory Subtract") {
-        setBtnCalc(`${btnCalc}-${memory}`);
+        setBtnCalc(`${btnCalc} - ${memory}`);
         setScreen(`${btnCalc} - ${memory}`);
       } else if (value === "Memory Recall") {
         setBtnCalc(`${memory}`);
