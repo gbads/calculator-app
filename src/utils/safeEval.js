@@ -13,7 +13,7 @@ const safeEval = str => {
   if (notValid) {
     console.error(str);
     alert("Invalid operations detected.  Resetting");
-    return "";
+    return "0";
   }
 
   return new Function("return " + str)(); // eslint-disable-line no-new-func
