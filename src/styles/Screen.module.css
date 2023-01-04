@@ -1,5 +1,14 @@
-.wrapper {
-  min-height: 40px;
-  border: 1px solid black;
-  margin-bottom: 13px;
+.screen {
+  /* min-height: 40px; */
+  /* border: 1px solid black; */
+  /* margin-bottom: 13px; */
+  border-radius: 8px;
+  border: none;
+  /* height: 80px; */
+  padding: 12px;
+  text-align: right;
+  font-size: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #181f32ff;
+  color: white; 
 }

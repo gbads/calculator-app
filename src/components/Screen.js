@@ -3,7 +3,7 @@ import styles from '../styles/Screen.module.css';
 
 const Screen = (display) => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.screen}>
       {display.textToDisplay}
     </div>
   )
