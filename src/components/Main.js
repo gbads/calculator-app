@@ -89,15 +89,28 @@ const Main = () => {
       }
     } else if (value === "Memory Clear") {
       setMemory("");
-    } else if (value === "Memory Recall") {
-      setScreen(memory);
-    } else if (value === "Memory Addition") {
-      setBtnCalc(`${btnCalc}+${memory}`);
-      setScreen(`${btnCalc} + ${memory}`);
-    } else if (value === "Memory Subtract") {
-      setBtnCalc(`${btnCalc}-${memory}`);
-      setScreen(`${btnCalc} - ${memory}`);
-    }
+      
+    } else if(memory === "" || memory === null || isNaN(memory)) {
+      if (value === "Memory Recall" || value === "Memory Addition" || value === "Memory Subtraction") {
+        setScreen("Error");
+        setBtnCalc("");
+        setMemory("");
+      }
+    } else if (!Number.isNaN(memory)) {
+      if (value === "Memory Addition") {
+        setBtnCalc(`${btnCalc}+${memory}`);
+        setScreen(`${btnCalc} + ${memory}`);
+      } else if (value === "Memory Subtract") {
+        setBtnCalc(`${btnCalc}-${memory}`);
+        setScreen(`${btnCalc} - ${memory}`);
+      } else if (value === "Memory Recall") {
+        setBtnCalc(`${memory}`);
+        setScreen(`${memory}`);
+      }
+      
+    } 
+        
+      
   };
 
   return (
