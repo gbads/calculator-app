@@ -39,7 +39,7 @@ const Main = () => {
         setBtnCalc(result);
         break;
       case "sign":
-        let numbers = btnCalc.split(" ");
+        let numbers = String(btnCalc).split(" ");
         let lastNumber = numbers[numbers.length - 1];
         if(Number.isNaN(lastNumber) || lastNumber === "") {
           
